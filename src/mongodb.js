@@ -10,7 +10,7 @@ module.exports = function (app) {
       useUnifiedTopology: true
      }).then(client => {
         client.db(database)
-        console.log("Database connected", client);
+        console.log("Database connected");
         app.set('mongoClient', client);
         resolve(true)
       }).catch(err => {
