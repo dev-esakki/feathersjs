@@ -12,6 +12,7 @@ module.exports = async function (app) {
 
   // Initialize our service with any options it requires
   app.use('/users', new Users(options, app));
+  app.use('/users/login', new Users(options, app));
   app.use('/messages', {
     async find(params) {
       return await app.service('users').getMiniProfile(params);
@@ -20,15 +21,6 @@ module.exports = async function (app) {
   
   // Get our initialized service so that we can register hooks
   const service = app.service('users');
-  
-  /* service.create({
-    email: 'test@mail.com',
-    password: 'asddasfsdfsdg12o3i103r'
-  }).then(function(point) {
-      console.log('Created point', point);
-  }); */
 
-  
-
-  //service.hooks(hooks);
+  service.hooks(hooks);
 };
