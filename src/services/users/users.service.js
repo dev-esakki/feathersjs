@@ -12,7 +12,7 @@ module.exports = async function (app) {
 
   // Initialize our service with any options it requires
   app.use('/users', new Users(options, app));
-  app.use('/users/login', new Users(options, app));
+  app.use('/users/:email', new Users(options, app));
   app.use('/messages', {
     async find(params) {
       return await app.service('users').getMiniProfile(params);

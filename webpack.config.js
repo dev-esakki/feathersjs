@@ -6,6 +6,7 @@ const exec = require('child_process').exec;
 const {
   NODE_ENV = 'production',
 } = process.env;
+
 module.exports = {
   entry: './src/index.js',
   mode: NODE_ENV,
@@ -17,23 +18,14 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js'],
   },
-  module: {
-    rules: [
-      {
-        test: /\.ts$/,
-        use: [
-          'ts-loader',
-        ]
-      }
-    ]
-  },
   externals: [ nodeExternals() ],
   watch: NODE_ENV === 'development',
   plugins: [
     {
       apply: (compiler) => {
+        console.log(NODE_ENV);
         compiler.hooks.afterEmit.tap('AfterEmitPlugin', (compilation) => {
-          exec('node build/index.js', (err, stdout, stderr) => {
+          exec('nodemon src/', (err, stdout, stderr) => {
             if (stdout) process.stdout.write(stdout);
             if (stderr) process.stderr.write(stderr);
           });

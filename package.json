@@ -27,8 +27,8 @@
     "test": "npm run lint && npm run jest",
     "lint": "eslint src/. test/. --config .eslintrc.json --fix",
     "dev": "nodemon src/",
-    "build": "webpack --config webpack.config.js",
-    "start": "nodemon build/index.js",
+    "build": "NODE_ENV=development webpack --config webpack.config.js",
+    "start": "NODE_ENV=development nodemon src/",
     "jest": "jest  --forceExit"
   },
   "standard": {

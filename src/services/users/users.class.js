@@ -7,7 +7,8 @@ exports.Users = class Users extends Service {
     this.app = app
   }
 
-  async get(email) {    
+  async get(params) {    
+    const { email } = params;
     const db = this.app.get('mongoClient')
     const user = await db.userModal.findOne({email});    
     if(user) {
