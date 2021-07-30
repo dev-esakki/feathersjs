@@ -1,18 +1,22 @@
 const { Service } = require('feathers-mongodb');
 
 exports.Users = class Users extends Service {
+  
   constructor(options, app) {
     super(options);
-    app.get('mongoClient').then(db => { 
-      console.log(db);     
-      this.Model = db.collection('users');      
-    });
-
+    this.app = app
+  }
+  
+  async find() {
+    const db = this.app.get('mongoClient')
+    const users = await db.userModal.find();
+    return users;
   }
 
-  get() {
-    const a = this.Model.find();
-    console.log(a);
-    return a;
+  getMiniProfile() {
+    console.log("ttetetefd>>>>>>>>>>>>>");
+
+    return { "Test": "oooooooo", "POK": "lllllll"};
+
   }
 };
